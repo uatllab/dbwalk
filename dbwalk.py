@@ -78,6 +78,9 @@ class BaseTable(ABC):
         return str(self.df)
 
 class WishTable(BaseTable):
+    def __init__(self,file,datecols=WISH_DATECOLS):
+        super().__init__(file,datecols)
+
     def adjust(self):
         df = self.df
         df['year'] = pd.DatetimeIndex(df['Date']).year
@@ -86,8 +89,8 @@ class WishTable(BaseTable):
 
 if __name__ == "__main__":
   session = Session()
-  session.open(user="20240167", pwd="uatl14")  
-     
-  wt = WishTable(session.query(WISH_QUERY),WISH_DATECOLS)
+  session.open()  
+  wish_query = session.query(WISH_QUERY)   
+  wt = WishTable(wish_query)
   wt.adjust()
   print(wt)
