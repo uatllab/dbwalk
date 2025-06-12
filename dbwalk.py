@@ -7,6 +7,7 @@ jc 2025
 import os
 import pandas as pd
 from abc import ABC, abstractmethod
+import secret
 
 DEBUG = 0
 HTTPIE_BIN = "/usr/bin/http"
@@ -38,7 +39,7 @@ def log(level,msg):
 
 class Session:
 
-  def open(self,user, pwd, session="mysession"):
+  def open(self,user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD, session="mysession"):
     self.session = session
     f_out = f"/tmp/{self.session}_open" 
     cmd = f"{HTTPIE_BIN} -I --session={session} -f POST {URL}/Account/LogOn UserName={user} Password={pwd} > {f_out}"
