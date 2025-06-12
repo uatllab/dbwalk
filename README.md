@@ -4,8 +4,9 @@ Cela fait appel à 1 requête SQL immuable (quelque soit l'année) par table.
 
 ## Pré-requis :
 * python 3
-* pandas
-* jupyter
+* python pandas
+* python jupyter
+* httpie
     
 ## Utilisation :
 * cloner ce dépôt
