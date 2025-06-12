@@ -90,11 +90,11 @@ if __name__ == "__main__":
   session = Session()
   session.open(user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD)  
 
-#   membership_query = session.query(cf.MEMBERSHIP_QUERY)   
-#   mt = MembershipTable(membership_query)
-#   mt.adjust()
-#   print(mt.colnames())
-#   print(mt)
+  membership_query = session.query(cf.MEMBERSHIP_QUERY)   
+  mt = MembershipTable(membership_query)
+  mt.adjust()
+  print(mt.colnames())
+  print(mt)
 
   activity_query = session.query(cf.ACTIVITY_QUERY)   
   at = ActivityTable(activity_query)
@@ -102,7 +102,7 @@ if __name__ == "__main__":
   print(at.colnames())
   print(at)
 
-#   wish_query = session.query(cf.WISH_QUERY)   
-#   wt = WishTable(wish_query)
-#   wt.adjust()
-#   print(wt)
+  wish_query = session.query(cf.WISH_QUERY)   
+  wt = WishTable(wish_query)
+  wt.adjust()
+  print(wt)
