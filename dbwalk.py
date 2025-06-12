@@ -44,7 +44,7 @@ class Session:
     f_out = f"/tmp/{self.session}_open" 
     cmd = f"{HTTPIE_BIN} -I --session={session} -f POST {URL}/Account/LogOn UserName={user} Password={pwd} > {f_out}"
     log(1,f"{cmd=}")
-    os.system(cmd)
+    return os.system(cmd)
 
   def query(self,id):
     f_out = f"/tmp/{self.session}_query{id}"
@@ -89,7 +89,7 @@ class WishTable(BaseTable):
 
 if __name__ == "__main__":
   session = Session()
-  session.open()  
+  session.open(user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD)  
   wish_query = session.query(WISH_QUERY)   
   wt = WishTable(wish_query)
   wt.adjust()
