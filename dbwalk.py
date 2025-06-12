@@ -38,7 +38,7 @@ def log(level,msg):
 
 class Session:
 
-  def open(self,user="20240167", pwd="uatl14", session="mysession"):
+  def open(self,user, pwd, session="mysession"):
     self.session = session
     f_out = f"/tmp/{self.session}_open" 
     cmd = f"{HTTPIE_BIN} -I --session={session} -f POST {URL}/Account/LogOn UserName={user} Password={pwd} > {f_out}"
