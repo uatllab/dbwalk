@@ -32,6 +32,49 @@ MEMBERSHIP_COLS = [
     # , 'AcceptYearReduction'
     ]
 
+ACTIVITY_QUERY = 338
+ACTIVITY_DATECOLS = [ "StartDate", "EndDate" ]
+ACTIVITY_COLS = [
+    
+         "Id"
+        , "Reference"
+        , "Label"
+        , "Cycle"
+        , "LeaningCycleYear"
+        , "Description"
+        , "LevelDescription"
+        , "FrequencyDay"
+        , "FrequencyStartHour"
+        , "FrequencyEndHour"
+        , "AvalaiblePlacesCount"
+        , "SpecificParticipation"
+        , "Filmed"
+        , "VideoLink"
+        , "StartDate"
+        , "EndDate"
+        , "RoomConfiguration"
+        , "EquipmentRequest"
+        , "SpecificParticipationPortfolioId"
+        , "SpecificParticipationDecision"
+        , "NeedFinanceDescription"
+        , "NeedFinancePortfolioId"
+        , "NeedFinanceDecision"
+        , "StopDate"
+        , "StopDateReason"
+        , "Level"
+        , "CalendarId"
+        , "AnimatorSecurityGroupId"
+        , "MemberSecurityGroupId"
+        , "RoomCode"
+        , "MainPortfolioId"
+        , "Year_Code"
+        , "ActivityCategory_Code"
+        , "ParentId"
+        , "IsArchived"
+        , "IFrameVideoLink"
+        , "NeedFinanceFormation"
+    ]
+
 WISH_QUERY = 336
 WISH_DATECOLS = [ "Date" ]
 WISH_COLS = [

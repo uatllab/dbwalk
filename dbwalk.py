@@ -65,6 +65,17 @@ class MembershipTable(BaseTable):
         df = df.loc[df["year"] == cf.CUR_YEAR, cf.MEMBERSHIP_COLS ]
         self.df = df
 
+class ActivityTable(BaseTable):
+    def __init__(self,file,datecols=cf.ACTIVITY_DATECOLS):
+        super().__init__(file,datecols)
+
+    def adjust(self):
+        df = self.df
+        df['StartDate'] = pd.DatetimeIndex(df['StartDate'])
+        df['EndDate'] = pd.DatetimeIndex(df['EndDate'])
+        df = df.loc[df["StopDate"].notnull(), cf.ACTIVITY_COLS ]
+        self.df = df
+
 class WishTable(BaseTable):
     def __init__(self,file,datecols=cf.WISH_DATECOLS):
         super().__init__(file,datecols)
@@ -79,11 +90,17 @@ if __name__ == "__main__":
   session = Session()
   session.open(user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD)  
 
-  membership_query = session.query(cf.MEMBERSHIP_QUERY)   
-  mt = MembershipTable(membership_query)
-  mt.adjust()
-  print(mt.colnames())
-  print(mt)
+#   membership_query = session.query(cf.MEMBERSHIP_QUERY)   
+#   mt = MembershipTable(membership_query)
+#   mt.adjust()
+#   print(mt.colnames())
+#   print(mt)
+
+  activity_query = session.query(cf.ACTIVITY_QUERY)   
+  at = ActivityTable(activity_query)
+  at.adjust()
+  print(at.colnames())
+  print(at)
 
 #   wish_query = session.query(cf.WISH_QUERY)   
 #   wt = WishTable(wish_query)
