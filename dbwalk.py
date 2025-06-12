@@ -46,7 +46,7 @@ class BaseTable(ABC):
         self.datecols = datecols
 
     def colnames(self):
-        return list(t.df.columns)
+        return list(self.df.columns)
 
     @abstractmethod
     def adjust(self):
@@ -54,6 +54,16 @@ class BaseTable(ABC):
 
     def __str__(self):
         return str(self.df)
+
+class MembershipTable(BaseTable):
+    def __init__(self,file,datecols=cf.MEMBERSHIP_DATECOLS):
+        super().__init__(file,datecols)
+
+    def adjust(self):
+        df = self.df
+        df['year'] = pd.DatetimeIndex(df['CreatedDateTime']).year
+        df = df.loc[df["year"] == cf.CUR_YEAR, cf.MEMBERSHIP_COLS ]
+        self.df = df
 
 class WishTable(BaseTable):
     def __init__(self,file,datecols=cf.WISH_DATECOLS):
@@ -68,7 +78,14 @@ class WishTable(BaseTable):
 if __name__ == "__main__":
   session = Session()
   session.open(user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD)  
-  wish_query = session.query(cf.WISH_QUERY)   
-  wt = WishTable(wish_query)
-  wt.adjust()
-  print(wt)
+
+  membership_query = session.query(cf.MEMBERSHIP_QUERY)   
+  mt = MembershipTable(membership_query)
+  mt.adjust()
+  print(mt.colnames())
+  print(mt)
+
+#   wish_query = session.query(cf.WISH_QUERY)   
+#   wt = WishTable(wish_query)
+#   wt.adjust()
+#   print(wt)
