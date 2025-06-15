@@ -20,14 +20,14 @@ class Session:
   def open(self,user=secret.SESSION_LOGIN, pwd=secret.SESSION_PASSWD, session="mysession"):
     self.session = session
     f_out = f"{cf.TMPDIR}/{self.session}_open" 
-    cmd = f"{cf.HTTPIE_BIN} -I --session={session} -f POST {cf.URL}/Account/LogOn UserName={user} Password={pwd} > {f_out}"
+    cmd = f"{cf.HTTPIE_BIN} -I --session={session} -f POST {secret.URL}/Account/LogOn UserName={user} Password={pwd} > {f_out}"
     log(1,f"{cmd=}")
     return os.system(cmd)
 
   def query(self,id):
     f_out = f"{cf.TMPDIR}/{self.session}_query{id}"
-    cmd = f"{cf.HTTPIE_BIN} -I --session={self.session} {cf.URL}/Query/ExecuteQuery/{id} | tail -n +2 > {f_out}"
-    cmd = f"{cf.HTTPIE_BIN} -I --session={self.session} {cf.URL}/Query/ExecuteQuery/{id} > {f_out}"
+    cmd = f"{cf.HTTPIE_BIN} -I --session={self.session} {secret.URL}/Query/ExecuteQuery/{id} | tail -n +2 > {f_out}"
+    cmd = f"{cf.HTTPIE_BIN} -I --session={self.session} {secret.URL}/Query/ExecuteQuery/{id} > {f_out}"
     log(1,f"{cmd=}")
     os.system(cmd)
     return f_out
