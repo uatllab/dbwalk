@@ -6,7 +6,7 @@ jc 2025
 
 DEBUG = 0
 HTTPIE_BIN = "/usr/bin/http"
-URL = "https://intranet.uatl-eca.fr"
+TMPDIR = "/tmp"
 
 CSV_SEP = ";"
 ENCODING_ERRORS = "replace"
